@@ -12,7 +12,7 @@ let mode=parseInt(localStorage.getItem("Mode"));
 
 if(mode===1){
     
-    timer.innerHTML="00:10";
+    timer.innerHTML="25:00";
 }
 else{
    
@@ -35,6 +35,7 @@ const updateBreakTimer=()=>{
 }
 
 const startBreak=()=>{
+    clearInterval(bInterval);
     
     breakTime=parseInt(localStorage.getItem("Btime")) || 5*60;
 bInterval=setInterval(()=>{
@@ -93,7 +94,7 @@ const updatetimer=()=>{
 
 const startTimer=()=>{
     clearInterval(interval);
-    timeleft=parseInt(localStorage.getItem("Timeleft")) ?? 10;
+    timeleft=parseInt(localStorage.getItem("Timeleft")) ?? 25*60;
     interval=setInterval(()=>{
         timeleft--;
         updatetimer();
@@ -200,3 +201,4 @@ else{
 start.addEventListener("click",chekerstart);
 pause.addEventListener("click",checkpause);
 reset.addEventListener("click",checkreset);
+
