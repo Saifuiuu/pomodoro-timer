@@ -5,12 +5,24 @@ const pause=document.getElementById("pause-btn");
 const reset=document.getElementById("reset-btn");
 const counter=document.getElementById("Sessions-counter");
 
-let mode=1;
+
+
+
+let mode=parseInt(localStorage.getItem("Mode"));
+
+if(mode===1){
+    
+    timer.innerHTML="00:10";
+}
+else{
+   
+    timer.innerHTML="05:00";
+}
 localStorage.setItem("Mode",mode);
 
 //break working
 
-let breakTime=5*60;
+let breakTime=parseInt(localStorage.getItem("Btime")) ?? 5*60;
 let bInterval;
 localStorage.setItem("Btime",breakTime);
 
@@ -23,7 +35,7 @@ const updateBreakTimer=()=>{
 }
 
 const startBreak=()=>{
-    clearInterval(bInterval);
+    
     breakTime=parseInt(localStorage.getItem("Btime")) || 5*60;
 bInterval=setInterval(()=>{
     breakTime--;
@@ -42,6 +54,7 @@ bInterval=setInterval(()=>{
 const stopbTimer=()=>{
     clearInterval(bInterval);
     localStorage.setItem("Btime",breakTime);
+    updatetimer();
 }
 
 
@@ -80,7 +93,7 @@ const updatetimer=()=>{
 
 const startTimer=()=>{
     clearInterval(interval);
-    timeleft=parseInt(localStorage.getItem("Timeleft")) || 10;
+    timeleft=parseInt(localStorage.getItem("Timeleft")) ?? 10;
     interval=setInterval(()=>{
         timeleft--;
         updatetimer();
@@ -93,7 +106,7 @@ const startTimer=()=>{
             const today=new Date().toISOString().split("T")[0];
             if(formattedDate===today){
 
-                DailysessionsCounter= parseInt(localStorage.getItem("counter")) || 0;
+                DailysessionsCounter= parseInt(localStorage.getItem("counter"));
 DailysessionsCounter++;
 localStorage.setItem("counter",DailysessionsCounter);
 counter.innerHTML=`${DailysessionsCounter}`;
@@ -186,5 +199,4 @@ else{
 
 start.addEventListener("click",chekerstart);
 pause.addEventListener("click",checkpause);
-
 reset.addEventListener("click",checkreset);
