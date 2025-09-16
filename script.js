@@ -93,7 +93,7 @@ const startTimer=()=>{
             const today=new Date().toISOString().split("T")[0];
             if(formattedDate===today){
 
-                DailysessionsCounter= parseInt(localStorage.getItem("counter"));
+                DailysessionsCounter= parseInt(localStorage.getItem("counter")) || 0;
 DailysessionsCounter++;
 localStorage.setItem("counter",DailysessionsCounter);
 counter.innerHTML=`${DailysessionsCounter}`;
@@ -186,4 +186,5 @@ else{
 
 start.addEventListener("click",chekerstart);
 pause.addEventListener("click",checkpause);
+
 reset.addEventListener("click",checkreset);
