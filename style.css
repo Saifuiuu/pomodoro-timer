@@ -86,7 +86,10 @@ justify-content: center;
     margin: 0 5px;
     padding: 0.5rem 0;
 }
-
+.buttons button:hover{
+    transform:translateY(-5px);
+    transition:transform 0.3s ease;
+}
 #start-btn{
    
     background-color: rgb(26, 25, 25);
@@ -142,4 +145,5 @@ justify-content: center;
     border-color: rgb(94, 86, 76);
 
 }
+
 
